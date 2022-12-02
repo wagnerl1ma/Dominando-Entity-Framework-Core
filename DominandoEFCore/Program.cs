@@ -8,10 +8,14 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 #region Main
 
+Console.WriteLine("Dominando EF Core");
 
-Console.WriteLine("Hello, World!");
 
-
+ScriptGeralDoBancoDeDados();
+//MigracoesJaAplicadas();
+//TodasMigracoes();
+//AplicarMigracaoEmTempodeExecucao();
+//MigracoesPendentes()
 //SqlInjection();
 
 ////warmup
@@ -25,6 +29,64 @@ Console.WriteLine("Hello, World!");
 
 #endregion
 
+
+static void ScriptGeralDoBancoDeDados()
+{
+    using var db = new ApplicationContext();
+    var script = db.Database.GenerateCreateScript(); //gera um script SQL de toda minha base
+
+    Console.WriteLine();
+    Console.WriteLine(script);
+}
+
+static void MigracoesJaAplicadas()
+{
+    using var db = new ApplicationContext();
+
+    var migracoes = db.Database.GetAppliedMigrations(); //captura as migracoes que ja foram aplicadas
+
+    Console.WriteLine($"Total: {migracoes.Count()}");
+
+    foreach (var migracao in migracoes)
+    {
+        Console.WriteLine($"Migração: {migracao}");
+    }
+}
+
+static void TodasMigracoes()
+{
+    using var db = new ApplicationContext();
+
+    var migracoes = db.Database.GetMigrations(); // Le os arquivos de Migracoes da pasta Migration
+
+    Console.WriteLine($"Total: {migracoes.Count()}");
+
+    foreach (var migracao in migracoes)
+    {
+        Console.WriteLine($"Migração: {migracao}");
+    }
+}
+
+static void AplicarMigracaoEmTempodeExecucao()
+{
+    using var db = new ApplicationContext();
+
+    db.Database.Migrate(); //Aplica as migracoes que nao foram executadas
+}
+
+static void MigracoesPendentes()
+{
+    using var db = new ApplicationContext();
+
+    var migracoesPendentes = db.Database.GetPendingMigrations(); //capturar migracoes pendentes
+
+    Console.WriteLine($"Total: {migracoesPendentes.Count()}");
+
+    foreach (var migracao in migracoesPendentes)
+    {
+        Console.WriteLine($"Migração: {migracao}");
+    }
+}
 
 static void SqlInjection()
 {
