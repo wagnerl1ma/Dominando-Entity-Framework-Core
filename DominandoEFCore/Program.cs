@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 Console.WriteLine("Dominando EF Core");
 
-
-ScriptGeralDoBancoDeDados();
+CarregamentoAdiantado();
+//ScriptGeralDoBancoDeDados();
 //MigracoesJaAplicadas();
 //TodasMigracoes();
 //AplicarMigracaoEmTempodeExecucao();
@@ -29,6 +29,77 @@ ScriptGeralDoBancoDeDados();
 
 #endregion
 
+static void CarregamentoAdiantado()
+{
+    using var db = new ApplicationContext();
+    SetupTiposCarregamentos(db);
+
+    var departamentos = db
+        .Departamentos
+        .Include(p => p.Funcionarios); //include = faz o relacionamentro
+
+    foreach (var departamento in departamentos)
+    {
+
+        Console.WriteLine("---------------------------------------");
+        Console.WriteLine($"Departamento: {departamento.Descricao}");
+
+        if (departamento.Funcionarios?.Any() ?? false) //se existir mostre os funcionarios no console
+        {
+            foreach (var funcionario in departamento.Funcionarios)
+            {
+                Console.WriteLine($"\tFuncionario: {funcionario.Nome}");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"\tNenhum funcionario encontrado!");
+        }
+    }
+}
+
+static void SetupTiposCarregamentos(ApplicationContext db)
+{
+    if (!db.Departamentos.Any()) // se nao encontrar nenhum adciona no banco
+    {
+        db.Departamentos.AddRange(
+            new Departamento
+            {
+                Descricao = "Departamento 01",
+                Funcionarios = new System.Collections.Generic.List<Funcionario>
+                {
+                    new Funcionario
+                    {
+                        Nome = "Rafael Almeida",
+                        CPF = "99999999911",
+                        RG= "2100062"
+                    }
+                }
+            },
+            new Departamento
+            {
+                Descricao = "Departamento 02",
+                Funcionarios = new System.Collections.Generic.List<Funcionario>
+                {
+                     new Funcionario
+                     {
+                         Nome = "Bruno Brito",
+                         CPF = "88888888811",
+                         RG= "3100062"
+                     },
+                     new Funcionario
+                     {
+                         Nome = "Eduardo Pires",
+                         CPF = "77777777711",
+                         RG= "1100062"
+                     }
+                }
+            });
+
+        db.SaveChanges();
+        db.ChangeTracker.Clear();
+    }
+}
 
 static void ScriptGeralDoBancoDeDados()
 {
