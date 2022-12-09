@@ -10,7 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 Console.WriteLine("Dominando EF Core");
 
-CarregamentoExplicito();
+CarregamentoLento();
+//CarregamentoExplicito();
 //CarregamentoAdiantado();
 //ScriptGeralDoBancoDeDados();
 //MigracoesJaAplicadas();
@@ -29,6 +30,34 @@ CarregamentoExplicito();
 //GapDoEnsureCreated();
 
 #endregion
+
+static void CarregamentoLento()
+{
+    using var db = new ApplicationContext();
+    SetupTiposCarregamentos(db);
+
+    //db.ChangeTracker.LazyLoadingEnabled = false;
+
+    var departamentos = db.Departamentos.ToList();
+
+    foreach (var departamento in departamentos)
+    {
+        Console.WriteLine("---------------------------------------");
+        Console.WriteLine($"Departamento: {departamento.Descricao}");
+
+        if (departamento.Funcionarios?.Any() ?? false)
+        {
+            foreach (var funcionario in departamento.Funcionarios)
+            {
+                Console.WriteLine($"\tFuncionario: {funcionario.Nome}");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"\tNenhum funcionario encontrado!");
+        }
+    }
+}
 
 static void CarregamentoExplicito()
 {
