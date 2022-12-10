@@ -21,8 +21,8 @@ namespace DominandoEFCore
             //ConsultaInterpolada();
             //ConsultaParametrizada();
             //ConsultaProjetada();
-            //IgnoreFiltroGlobal();
-            FiltroGlobal();
+            IgnoreFiltroGlobal();
+            //FiltroGlobal();
         }
 
         static void ConsultaViaProcedure()
@@ -218,7 +218,7 @@ namespace DominandoEFCore
             using var db = new ApplicationContext();
             Setup(db);
 
-            var departamentos = db.Departamentos.IgnoreQueryFilters().Where(p => p.Id > 0).ToList();
+            var departamentos = db.Departamentos.IgnoreQueryFilters().Where(p => p.Id > 0).ToList(); //ignora filtro global configurado no contexto
 
             foreach (var departamento in departamentos)
             {
