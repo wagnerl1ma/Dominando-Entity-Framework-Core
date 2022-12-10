@@ -22,7 +22,7 @@ namespace DominandoEFCore_Modulo2_Consultas.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Departamento>().HasQueryFilter(p=>!p.Excluido); //filtro global - nao trazer registros com excluido == true
+            //modelBuilder.Entity<Departamento>().HasQueryFilter(p=>!p.Excluido); //filtro global - nao trazer registros com excluido == true
         }
     }
 }

@@ -20,8 +20,8 @@ namespace DominandoEFCore
             //ConsultaComTAG();
             //ConsultaInterpolada();
             //ConsultaParametrizada();
-            //ConsultaProjetada();
-            IgnoreFiltroGlobal();
+            ConsultaProjetada();
+            //IgnoreFiltroGlobal();
             //FiltroGlobal();
         }
 
@@ -197,7 +197,7 @@ namespace DominandoEFCore
             using var db = new ApplicationContext();
             Setup(db);
 
-            var departamentos = db.Departamentos
+            var departamentos = db.Departamentos //consulta customizada é uma boa prática
                 .Where(p => p.Id > 0)
                 .Select(p => new { p.Descricao, Funcionarios = p.Funcionarios.Select(f => f.Nome) })
                 .ToList();
