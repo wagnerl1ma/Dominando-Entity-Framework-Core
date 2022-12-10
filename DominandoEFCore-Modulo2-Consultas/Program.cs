@@ -12,13 +12,13 @@ namespace DominandoEFCore
         static void Main(string[] args)
         {
             //ConsultaViaProcedure();
-           // CriarStoredProcedureDeConsulta();
+            // CriarStoredProcedureDeConsulta();
             //InserirDadosViaProcedure();
             //CriarStoredProcedure();
-            //DivisaoDeConsulta();
+            DivisaoDeConsulta();
             //EntendendoConsulta1NN1();
             //ConsultaComTAG();
-            ConsultaInterpolada();
+            //ConsultaInterpolada();
             //ConsultaParametrizada();
             //ConsultaProjetada();
             //IgnoreFiltroGlobal();
@@ -94,8 +94,8 @@ namespace DominandoEFCore
             var departamentos = db.Departamentos
                 .Include(p => p.Funcionarios)
                 .Where(p => p.Id < 3)
-                //.AsSplitQuery()
-                .AsSingleQuery()
+                //.AsSplitQuery() // dividindo consultas relacionadas
+                .AsSingleQuery() // volta a consulta normal, nao dividindo os relacionamentos
                 .ToList();
 
             foreach (var departamento in departamentos)

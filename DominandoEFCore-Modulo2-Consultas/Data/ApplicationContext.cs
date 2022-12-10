@@ -14,7 +14,7 @@ namespace DominandoEFCore_Modulo2_Consultas.Data
         {
             const string strConnection = "Data source=(localdb)\\mssqllocaldb; Initial Catalog=DevIO-02;Integrated Security=true;pooling=true;";
             optionsBuilder
-                //.UseSqlServer(strConnection,p=>p.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                //.UseSqlServer(strConnection,p=>p.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)) // Config Global -  para todas as query que tem relacionamento dividir a consulta
                 .UseSqlServer(strConnection)
                 .EnableSensitiveDataLogging()
                 .LogTo(Console.WriteLine, LogLevel.Information);
