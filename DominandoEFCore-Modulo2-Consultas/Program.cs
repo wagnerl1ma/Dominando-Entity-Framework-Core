@@ -18,9 +18,9 @@ namespace DominandoEFCore
             //DivisaoDeConsulta();
             //EntendendoConsulta1NN1();
             //ConsultaComTAG();
-            //ConsultaInterpolada();
+            ConsultaInterpolada();
             //ConsultaParametrizada();
-            ConsultaProjetada();
+            //ConsultaProjetada();
             //IgnoreFiltroGlobal();
             //FiltroGlobal();
         }
@@ -162,7 +162,8 @@ namespace DominandoEFCore
 
             var id = 1;
             var departamentos = db.Departamentos
-                .FromSqlInterpolated($"SELECT * FROM Departamentos WHERE Id>{id}")
+                .FromSqlInterpolated($"SELECT * FROM Departamentos WHERE Id > {id}") //dá para utilizar em uma consulta de API por exemplo, usando o FromSqlInterpolated fará uma consulta mais segura
+                //.Where(p => !p.Excluido) //sub select
                 .ToList();
 
             foreach (var departamento in departamentos)
@@ -183,7 +184,7 @@ namespace DominandoEFCore
             };
             var departamentos = db.Departamentos
                 .FromSqlRaw("SELECT * FROM Departamentos WHERE Id>{0}", id)
-                .Where(p => !p.Excluido)
+                .Where(p => !p.Excluido) //sub select
                 .ToList();
 
             foreach (var departamento in departamentos)
