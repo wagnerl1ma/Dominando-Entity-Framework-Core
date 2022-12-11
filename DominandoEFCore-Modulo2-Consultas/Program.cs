@@ -11,11 +11,11 @@ namespace DominandoEFCore
     {
         static void Main(string[] args)
         {
-            //ConsultaViaProcedure();
-            // CriarStoredProcedureDeConsulta();
+            ConsultaViaProcedure();
+            //CriarStoredProcedureDeConsulta();
             //InserirDadosViaProcedure();
             //CriarStoredProcedure();
-            DivisaoDeConsulta();
+            //DivisaoDeConsulta();
             //EntendendoConsulta1NN1();
             //ConsultaComTAG();
             //ConsultaInterpolada();
@@ -36,7 +36,9 @@ namespace DominandoEFCore
                 .FromSqlInterpolated($"EXECUTE GetDepartamentos {dep}")
                 .ToList();
 
-            foreach(var departamento in departamentos)
+            //var departamentos = db.Departamentos.ToList();
+
+            foreach (var departamento in departamentos)
             {
                 Console.WriteLine(departamento.Descricao);
             }
