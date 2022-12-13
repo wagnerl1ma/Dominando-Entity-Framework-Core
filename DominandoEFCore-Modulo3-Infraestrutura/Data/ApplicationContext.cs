@@ -1,5 +1,6 @@
 using DominandoEFCore_Modulo3_Infraestrutura.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
 
 namespace DominandoEFCore_Modulo3_Infraestrutura.Data
@@ -16,7 +17,9 @@ namespace DominandoEFCore_Modulo3_Infraestrutura.Data
 
             optionsBuilder
                 .UseSqlServer(strConnection, o => o.MaxBatchSize(100).CommandTimeout(5).EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null))
-                .LogTo(Console.WriteLine, LogLevel.Information) //inserindo log no console
+                //.LogTo(Console.WriteLine, LogLevel.Information) //inserindo log no console
+                .LogTo(Console.WriteLine, new[] { CoreEventId.ContextInitialized, RelationalEventId.CommandExecuted},
+                                                  LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine) //filtrando eventos do log
                 .EnableSensitiveDataLogging();
         }
 
