@@ -12,7 +12,7 @@ namespace DominandoEFCore
             //TempoComandoGeral();
             //HabilitandoBatchSize();
             //DadosSensiveis();
-            //ConsultarDepartamentos();
+            ConsultarDepartamentos();
         }
 
         static void ExecutarEstrategiaResiliencia()

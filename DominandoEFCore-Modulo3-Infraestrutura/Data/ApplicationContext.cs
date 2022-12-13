@@ -12,18 +12,12 @@ namespace DominandoEFCore_Modulo3_Infraestrutura.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            const string strConnection="Data source=(localdb)\\mssqllocaldb; Initial Catalog=DevIO-02;Integrated Security=true;pooling=true;";
+            const string strConnection = "Data source=(localdb)\\mssqllocaldb; Initial Catalog=DevIO-02;Integrated Security=true;pooling=true;";
 
             optionsBuilder
-                .UseSqlServer(
-                    strConnection, 
-                        o=> o
-                            .MaxBatchSize(100)
-                            .CommandTimeout(5)
-                            .EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null))
-                .LogTo(Console.WriteLine, LogLevel.Information)
-                .EnableSensitiveDataLogging()
-                ;
+                .UseSqlServer(strConnection, o => o.MaxBatchSize(100).CommandTimeout(5).EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null))
+                .LogTo(Console.WriteLine, LogLevel.Information) //inserindo log no console
+                .EnableSensitiveDataLogging();
         }
 
         public override void Dispose()
