@@ -19,12 +19,13 @@ namespace DominandoEFCore_Modulo3_Infraestrutura.Data
 
             optionsBuilder
                 .UseSqlServer(strConnection, o => o.MaxBatchSize(100).CommandTimeout(5).EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null))
-                .EnableDetailedErrors(); //encontrando erros com mais detalhes - esse método deixa o carregamento mais lento, entao é aconselhavel somenete em modo debug
-                //.LogTo(Console.WriteLine, LogLevel.Information); //inserindo log no console
-                //.LogTo(_writer.WriteLine, LogLevel.Information); //Gravando logs em um arquivo de texto
-                /*.LogTo(Console.WriteLine, new[] { CoreEventId.ContextInitialized, RelationalEventId.CommandExecuted},
-                                                  LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine) //filtrando eventos do log
-                .EnableSensitiveDataLogging();*/
+                .LogTo(Console.WriteLine, LogLevel.Information) //inserindo log no console
+                .EnableSensitiveDataLogging();  // logs sensives no console -  é uma boa prática no modo debug
+                 //.LogTo(_writer.WriteLine, LogLevel.Information); //Gravando logs em um arquivo de texto
+            /*.LogTo(Console.WriteLine, new[] { CoreEventId.ContextInitialized, RelationalEventId.CommandExecuted},
+                                          LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine) //filtrando eventos do log
+            .EnableSensitiveDataLogging();*/
+            //.EnableDetailedErrors(); //encontrando erros com mais detalhes - esse método deixa o carregamento mais lento, entao é aconselhavel somenete em modo debug
         }
 
         public override void Dispose()
