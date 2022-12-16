@@ -9,9 +9,9 @@ namespace DominandoEFCore
     {
         static void Main(string[] args)
         {
-            //TempoComandoGeral();
+            TempoComandoGeral();
             //HabilitandoBatchSize();
-            DadosSensiveis();
+            //DadosSensiveis();
             //ConsultarDepartamentos();
         }
 
@@ -39,7 +39,7 @@ namespace DominandoEFCore
 
             db.Database.SetCommandTimeout(10);
 
-            db.Database.ExecuteSqlRaw("WAITFOR DELAY '00:00:07';SELECT 1");
+            db.Database.ExecuteSqlRaw("WAITFOR DELAY '00:00:07';SELECT 1"); // Configurando tempo do Timeout para 7 segundos
         }
 
         static void HabilitandoBatchSize()

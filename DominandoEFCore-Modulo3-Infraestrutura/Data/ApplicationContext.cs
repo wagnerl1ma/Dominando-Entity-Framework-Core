@@ -18,7 +18,9 @@ namespace DominandoEFCore_Modulo3_Infraestrutura.Data
             const string strConnection = "Data source=(localdb)\\mssqllocaldb; Initial Catalog=DevIO-02;Integrated Security=true;pooling=true;";
 
             optionsBuilder
-                .UseSqlServer(strConnection, o => o.MaxBatchSize(100).CommandTimeout(5).EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null)) //aumentando o tamanho do lote para gravacao no banco de dados, por padrao o sql server aceita 42 registros
+                .UseSqlServer(strConnection, o => o.MaxBatchSize(100) //aumentando o tamanho do lote para gravacao no banco de dados, por padrao o sql server aceita 42 registros
+                .CommandTimeout(5) // Configurando tempo do Timeout do comando global
+                .EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null)) 
                 .LogTo(Console.WriteLine, LogLevel.Information) //inserindo log no console
                 .EnableSensitiveDataLogging();  // logs sensives no console -  é uma boa prática no modo debug
                  //.LogTo(_writer.WriteLine, LogLevel.Information); //Gravando logs em um arquivo de texto
