@@ -37,7 +37,7 @@ namespace DominandoEFCore
         {
             using var db = new ApplicationContext();
 
-            db.Database.SetCommandTimeout(10);
+            db.Database.SetCommandTimeout(10); //Configurando o Timeout do comando para um fluxo especifico ou necessidade
 
             db.Database.ExecuteSqlRaw("WAITFOR DELAY '00:00:07';SELECT 1"); // Configurando tempo do Timeout para 7 segundos
         }
