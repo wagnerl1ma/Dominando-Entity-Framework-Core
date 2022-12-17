@@ -20,7 +20,7 @@ namespace DominandoEFCore_Modulo3_Infraestrutura.Data
             optionsBuilder
                 .UseSqlServer(strConnection, o => o.MaxBatchSize(100) //aumentando o tamanho do lote para gravacao no banco de dados, por padrao o sql server aceita 42 registros
                 .CommandTimeout(5) // Configurando tempo do Timeout do comando global
-                .EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null)) 
+                .EnableRetryOnFailure(4, TimeSpan.FromSeconds(10), null))  // Ativar nova tentativa em caso de falha - Por padrao ele tenta 6x a durant 30segundos até falhar
                 .LogTo(Console.WriteLine, LogLevel.Information) //inserindo log no console
                 .EnableSensitiveDataLogging();  // logs sensives no console -  é uma boa prática no modo debug
                  //.LogTo(_writer.WriteLine, LogLevel.Information); //Gravando logs em um arquivo de texto
