@@ -19,7 +19,7 @@ namespace DominandoEFCore
         {
             using var db = new ApplicationContext();
 
-            var strategy = db.Database.CreateExecutionStrategy();
+            var strategy = db.Database.CreateExecutionStrategy(); // executando transacao de forma mais segura // essencial quando se usa EnableRetryOnFailure no context, para nao duplicar um dado em caso de falha 
             strategy.Execute(() =>
             {
                 using var transaction = db.Database.BeginTransaction();
