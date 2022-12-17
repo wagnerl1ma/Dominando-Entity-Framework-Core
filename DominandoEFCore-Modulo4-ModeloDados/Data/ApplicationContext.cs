@@ -37,11 +37,11 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             /*
-            modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AI");
+            modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AI"); //config codificaçao nivel global
             //RAFAEL -> rafael
             //Jõao -> Joao
 
-            modelBuilder.Entity<Departamento>().Property(p=>p.Descricao).UseCollation("SQL_Latin1_General_CP1_CS_AS");
+            modelBuilder.Entity<Departamento>().Property(p=>p.Descricao).UseCollation("SQL_Latin1_General_CP1_CS_AS"); //config codificaçao para determinada propriedade
 
             modelBuilder
                 .HasSequence<int>("MinhaSequencia", "sequencias")
