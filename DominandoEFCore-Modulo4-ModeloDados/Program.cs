@@ -16,8 +16,8 @@ namespace DominandoEFCore
         static void Main(string[] args)
         {
             //Collations();
-            PropagarDados();
-            //Esquema();
+            //PropagarDados();
+            Esquema();
             //ConversorDeValor();
             //ConversorCustomizado();
             //PropriedadesDeSombra();

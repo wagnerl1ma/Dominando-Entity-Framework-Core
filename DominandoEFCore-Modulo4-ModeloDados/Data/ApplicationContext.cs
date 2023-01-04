@@ -65,18 +65,17 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
             //    .IsUnique(); // indice unico para nao ser duplicado
 
 
-            //Propragacao de Dados
-            modelBuilder.Entity<Estado>().HasData(new[]   //HasData: Quando gerar uma migration irá incluir esses dados juntos // essa funcionalidade é util para quando for criar dados que nao seja alterado com frequencia
-            {
-                new Estado { Id = 1, Nome = "Sao Paulo"},
-                new Estado { Id = 2, Nome = "Sergipe"}
-            });
+            ////Propragacao de Dados
+            //modelBuilder.Entity<Estado>().HasData(new[]   //HasData: Quando gerar uma migration irá incluir esses dados juntos // essa funcionalidade é util para quando for criar dados que nao seja alterado com frequencia
+            //{
+            //    new Estado { Id = 1, Nome = "Sao Paulo"},
+            //    new Estado { Id = 2, Nome = "Sergipe"}
+            //});
 
 
-            /*
-            modelBuilder.HasDefaultSchema("cadastros"); 
-            modelBuilder.Entity<Estado>().ToTable("Estados", "SegundoEsquema");
-            */
+            //Esquemas
+            modelBuilder.HasDefaultSchema("cadastros"); // configurando esquema global
+            modelBuilder.Entity<Estado>().ToTable("Estados", "SegundoEsquema"); // configurando para uma entidade especifica
 
             /*var conversao = new ValueConverter<Versao, string>(p => p.ToString(), p => (Versao)Enum.Parse(typeof(Versao), p));
 
