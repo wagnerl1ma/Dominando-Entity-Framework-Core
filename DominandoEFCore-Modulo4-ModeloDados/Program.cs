@@ -16,7 +16,7 @@ namespace DominandoEFCore
         static void Main(string[] args)
         {
             //Collations();
-            //PropagarDados();
+            PropagarDados();
             //Esquema();
             //ConversorDeValor();
             //ConversorCustomizado();
@@ -28,7 +28,7 @@ namespace DominandoEFCore
             //RelacionamentoMuitosParaMuitos();
             //CampoDeApoio();
             //ExemploTPH();
-            PacotesDePropriedades();
+            //PacotesDePropriedades();
         }
 
         static void Collations()

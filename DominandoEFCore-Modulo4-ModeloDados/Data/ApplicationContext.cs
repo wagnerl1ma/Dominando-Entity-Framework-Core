@@ -55,23 +55,23 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
             */
 
             ////Configurando Index
-            modelBuilder
-                .Entity<Departamento>()
-                //.HasIndex(p => p.Descricao) // indice com apenas um campo
-                .HasIndex(p=> new { p.Descricao, p.Ativo}) //indice com mais de um campo, indice composto
-                .HasDatabaseName("idx_meu_indice_composto") // nome do indice
-                .HasFilter("Descricao IS NOT NULL") // especificar filtro para o indice : melhora a performance da consulta
-                //.HasFillFactor(80)
-                .IsUnique(); // indice unico para nao ser duplicado
-                
+            //modelBuilder
+            //    .Entity<Departamento>()
+            //    //.HasIndex(p => p.Descricao) // indice com apenas um campo
+            //    .HasIndex(p=> new { p.Descricao, p.Ativo}) //indice com mais de um campo, indice composto
+            //    .HasDatabaseName("idx_meu_indice_composto") // nome do indice
+            //    .HasFilter("Descricao IS NOT NULL") // especificar filtro para o indice : melhora a performance da consulta
+            //    //.HasFillFactor(80)
+            //    .IsUnique(); // indice unico para nao ser duplicado
 
-            /*
-            modelBuilder.Entity<Estado>().HasData(new[] 
+
+            //Propragacao de Dados
+            modelBuilder.Entity<Estado>().HasData(new[]   //HasData: Quando gerar uma migration irá incluir esses dados juntos // essa funcionalidade é util para quando for criar dados que nao seja alterado com frequencia
             {
                 new Estado { Id = 1, Nome = "Sao Paulo"},
                 new Estado { Id = 2, Nome = "Sergipe"}
             });
-            */
+
 
             /*
             modelBuilder.HasDefaultSchema("cadastros"); 
