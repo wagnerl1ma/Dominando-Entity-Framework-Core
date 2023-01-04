@@ -49,20 +49,21 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
                 .IncrementsBy(2)
                 .HasMin(1)
                 .HasMax(10)
-                .IsCyclic();
+                .IsCyclic(); //reinicia a sequencia para o valor minimo configurado
 
-            modelBuilder.Entity<Departamento>().Property(p=>p.Id).HasDefaultValueSql("NEXT VALUE FOR sequencias.MinhaSequencia");
+            modelBuilder.Entity<Departamento>().Property(p=>p.Id).HasDefaultValueSql("NEXT VALUE FOR sequencias.MinhaSequencia"); //utilizando a sequencia
             */
 
-            /*
+            ////Configurando Index
             modelBuilder
                 .Entity<Departamento>()
-                .HasIndex(p=> new { p.Descricao, p.Ativo})
-                .HasDatabaseName("idx_meu_indice_composto")
-                .HasFilter("Descricao IS NOT NULL")
-                .HasFillFactor(80)
-                .IsUnique();
-                */
+                //.HasIndex(p => p.Descricao) // indice com apenas um campo
+                .HasIndex(p=> new { p.Descricao, p.Ativo}) //indice com mais de um campo, indice composto
+                .HasDatabaseName("idx_meu_indice_composto") // nome do indice
+                .HasFilter("Descricao IS NOT NULL") // especificar filtro para o indice : melhora a performance da consulta
+                //.HasFillFactor(80)
+                .IsUnique(); // indice unico para nao ser duplicado
+                
 
             /*
             modelBuilder.Entity<Estado>().HasData(new[] 
