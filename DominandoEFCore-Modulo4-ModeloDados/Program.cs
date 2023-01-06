@@ -18,8 +18,8 @@ namespace DominandoEFCore
             //Collations();
             //PropagarDados();
             //Esquema();
-            ConversorDeValor();
-            //ConversorCustomizado();
+            //ConversorDeValor();
+            ConversorCustomizado();
             //PropriedadesDeSombra();
             //TrabalhandoComPropriedadesDeSombra();
             //TiposDePropriedades();

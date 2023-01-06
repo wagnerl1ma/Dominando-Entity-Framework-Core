@@ -5,14 +5,14 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Conversores
 {
     public class ConversorCustomizado : ValueConverter<Status, string>
     {
-        public ConversorCustomizado() : base(p => ConverterParaOhBancoDeDados(p), value => ConverterParaAplicacao(value), new ConverterMappingHints(1))
+        public ConversorCustomizado() : base(p => ConverterParaOhBancoDeDados(p), value => ConverterParaAplicacao(value), new ConverterMappingHints(1)) //ConverterMappingHints = tamanho da propriedade customizada
         {
 
         }
 
         static string ConverterParaOhBancoDeDados(Status status)
         {
-            return status.ToString()[0..1];
+            return status.ToString()[0..1]; //capturando a primeira letra
         }
 
         static Status ConverterParaAplicacao(string value)

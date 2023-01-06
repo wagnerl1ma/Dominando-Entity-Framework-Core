@@ -1,3 +1,4 @@
+using DominandoEFCore_Modulo4_ModeloDados.Conversores;
 using DominandoEFCore_Modulo4_ModeloDados.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -78,26 +79,26 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
             //modelBuilder.HasDefaultSchema("cadastros"); // configurando esquema global
             //modelBuilder.Entity<Estado>().ToTable("Estados", "SegundoEsquema"); // configurando para uma entidade especifica
 
+            ////Convertendo Enum para String
             //var conversao = new ValueConverter<Versao, string>(p => p.ToString(), p => (Versao)Enum.Parse(typeof(Versao), p));
+            //var conversao1 = new EnumToStringConverter<Versao>();
 
-            //Convertendo Enum para String
-            var conversao1 = new EnumToStringConverter<Versao>();
-
-            modelBuilder.Entity<Conversor>()
-                .Property(p => p.Versao)
-                .HasConversion(conversao1);
+            //modelBuilder.Entity<Conversor>()
+            //    .Property(p => p.Versao)
+            //    .HasConversion(conversao1);
             
             //.HasConversion(conversao);
             //.HasConversion(p => p.ToString(), p => (Versao)Enum.Parse(typeof(Versao), p));
             //.HasConversion<string>();
 
-            /*
+            
+            //Conversores Customizado
             modelBuilder.Entity<Conversor>()
                 .Property(p => p.Status)
-                .HasConversion(new Curso.Conversores.ConversorCustomizado());
+                .HasConversion(new ConversorCustomizado());
 
             modelBuilder.Entity<Departamento>().Property<DateTime>("UltimaAtualizacao");
-            */
+            
 
             //modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
