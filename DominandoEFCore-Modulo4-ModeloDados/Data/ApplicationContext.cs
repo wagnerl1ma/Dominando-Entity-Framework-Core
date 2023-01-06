@@ -1,5 +1,6 @@
 using DominandoEFCore_Modulo4_ModeloDados.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 
 namespace DominandoEFCore_Modulo4_ModeloDados.Data
@@ -74,19 +75,20 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
 
 
             //Esquemas
-            modelBuilder.HasDefaultSchema("cadastros"); // configurando esquema global
-            modelBuilder.Entity<Estado>().ToTable("Estados", "SegundoEsquema"); // configurando para uma entidade especifica
+            //modelBuilder.HasDefaultSchema("cadastros"); // configurando esquema global
+            //modelBuilder.Entity<Estado>().ToTable("Estados", "SegundoEsquema"); // configurando para uma entidade especifica
 
-            /*var conversao = new ValueConverter<Versao, string>(p => p.ToString(), p => (Versao)Enum.Parse(typeof(Versao), p));
+            //var conversao = new ValueConverter<Versao, string>(p => p.ToString(), p => (Versao)Enum.Parse(typeof(Versao), p));
 
+            //Convertendo Enum para String
             var conversao1 = new EnumToStringConverter<Versao>();
 
             modelBuilder.Entity<Conversor>()
                 .Property(p => p.Versao)
                 .HasConversion(conversao1);
-            */
+            
             //.HasConversion(conversao);
-            //.HasConversion(p=>p.ToString(), p=> (Versao)Enum.Parse(typeof(Versao), p));
+            //.HasConversion(p => p.ToString(), p => (Versao)Enum.Parse(typeof(Versao), p));
             //.HasConversion<string>();
 
             /*
