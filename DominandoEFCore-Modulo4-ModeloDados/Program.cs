@@ -19,11 +19,11 @@ namespace DominandoEFCore
             //PropagarDados();
             //Esquema();
             //ConversorDeValor();
-            ConversorCustomizado();
+            //ConversorCustomizado();
             //PropriedadesDeSombra();
             //TrabalhandoComPropriedadesDeSombra();
             //TiposDePropriedades();
-            //Relacionamento1Para1();
+            Relacionamento1Para1();
             //Relacionamento1ParaMuitos();
             //RelacionamentoMuitosParaMuitos();
             //CampoDeApoio();

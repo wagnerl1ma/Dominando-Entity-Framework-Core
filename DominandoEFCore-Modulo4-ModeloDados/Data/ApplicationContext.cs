@@ -93,13 +93,14 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Data
 
             
             //Conversores Customizado
-            modelBuilder.Entity<Conversor>()
-                .Property(p => p.Status)
-                .HasConversion(new ConversorCustomizado());
+            //modelBuilder.Entity<Conversor>()
+            //    .Property(p => p.Status)
+            //    .HasConversion(new ConversorCustomizado());
 
-            modelBuilder.Entity<Departamento>().Property<DateTime>("UltimaAtualizacao");
+            //modelBuilder.Entity<Departamento>().Property<DateTime>("UltimaAtualizacao");
             
 
+            ////Formas de configurar suas entidades do Mapeamento do Fluent API 
             //modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
