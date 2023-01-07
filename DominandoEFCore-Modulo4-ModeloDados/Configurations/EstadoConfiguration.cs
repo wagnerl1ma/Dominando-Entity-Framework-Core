@@ -16,11 +16,11 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Configurations
             //Relacionamento de Forma Automatica
             builder.Navigation(p=>p.Governador).AutoInclude(); //Inlcuindo o AutoInlcuide() na chamada da consulta de um estado para já vir relacionado um Governado. Sendo assim nao é necessário informar o include em outras chamadas
 
-            //Relacionamento de muitos para um 
+            //Relacionamento de muitos para um - Tem muitas Cidades com Um Estado.
              builder.HasMany(p=>p.Cidades)
                 .WithOne(p=>p.Estado)
                 .IsRequired(false);
-                //.OnDelete(DeleteBehavior.Restrict);
+                //.OnDelete(DeleteBehavior.Restrict); // desabilita a exclusao em cascata
         }
     }
 }
