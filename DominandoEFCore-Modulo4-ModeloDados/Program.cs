@@ -24,8 +24,8 @@ namespace DominandoEFCore
             //TrabalhandoComPropriedadesDeSombra();
             //TiposDePropriedades();
             //Relacionamento1Para1();
-            Relacionamento1ParaMuitos();
-            //RelacionamentoMuitosParaMuitos();
+            //Relacionamento1ParaMuitos();
+            RelacionamentoMuitosParaMuitos();
             //CampoDeApoio();
             //ExemploTPH();
             //PacotesDePropriedades();

@@ -8,11 +8,14 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Configurations
     {
         public void Configure(EntityTypeBuilder<Ator> builder)
         {
+            //Configuracao muitos para muitos e criando uma tabela "FilmeAtores" automaticamente 
+
             /*builder
                 .HasMany(p=>p.Filmes)
                 .WithMany(p=>p.Atores)
                 .UsingEntity(p=>p.ToTable("AtoresFilmes"));*/
 
+            // config da tabela FilmeAtores que foi criada pelo entity
             builder
                 .HasMany(p=>p.Filmes)
                 .WithMany(p=>p.Atores)
