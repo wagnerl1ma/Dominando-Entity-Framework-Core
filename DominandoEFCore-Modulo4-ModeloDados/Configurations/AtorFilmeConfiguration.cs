@@ -8,7 +8,8 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Configurations
     {
         public void Configure(EntityTypeBuilder<Ator> builder)
         {
-            //Configuracao muitos para muitos e criando uma tabela "FilmeAtores" automaticamente 
+            // Junçao da classes Ator e Filme
+            //Configuracao muitos para muitos e criando uma tabela "FilmeAtores" automaticamente (entity) 
 
             /*builder
                 .HasMany(p=>p.Filmes)
@@ -17,16 +18,13 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Configurations
 
             // config da tabela FilmeAtores que foi criada pelo entity
             builder
-                .HasMany(p=>p.Filmes)
-                .WithMany(p=>p.Atores)
-                .UsingEntity<Dictionary<string,object>>(
+                .HasMany(p => p.Filmes)
+                .WithMany(p => p.Atores)
+                .UsingEntity<Dictionary<string, object>>(
                     "FilmesAtores",
-                    p=>p.HasOne<Filme>().WithMany().HasForeignKey("FilmeId"),
-                    p=>p.HasOne<Ator>().WithMany().HasForeignKey("AtorId"),
-                    p=> 
-                    {
-                        p.Property<DateTime>("CadastradoEm").HasDefaultValueSql("GETDATE()");
-                    }
+                    p => p.HasOne<Filme>().WithMany().HasForeignKey("FilmeId"),
+                    p => p.HasOne<Ator>().WithMany().HasForeignKey("AtorId"),
+                    p => { p.Property<DateTime>("CadastradoEm").HasDefaultValueSql("GETDATE()"); }  // criacao de um novo campo eu uma tabela criada automatica pelo entity
                 );
         }
     }
