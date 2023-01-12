@@ -8,7 +8,7 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Configurations
     {
         public void Configure(EntityTypeBuilder<Documento> builder)
         {
-             builder.Property("_cpf").HasColumnName("CPF").HasMaxLength(11);
+             builder.Property("_cpf").HasColumnName("CPF").HasMaxLength(11); // mapeando uma propriedade privada atraves do metodo GetCPF()
                 //.HasField("_cpf");
         }
     }

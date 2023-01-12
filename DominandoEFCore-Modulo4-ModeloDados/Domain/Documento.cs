@@ -11,7 +11,7 @@ namespace DominandoEFCore_Modulo4_ModeloDados.Domain
             // Validações
             if(string.IsNullOrWhiteSpace(cpf))
             {
-                throw new System.Exception("CPF Invalido");
+                throw new Exception("CPF Invalido");
             }
 
             _cpf = cpf;
