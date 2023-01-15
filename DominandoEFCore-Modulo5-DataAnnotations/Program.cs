@@ -1,6 +1,7 @@
 ﻿using DominandoEFCore_Modulo5_DataAnnotations.Data;
 using DominandoEFCore_Modulo5_DataAnnotations.Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace DominandoEFCore_Modulo5_DataAnnotations
 {
@@ -121,11 +122,11 @@ namespace DominandoEFCore_Modulo5_DataAnnotations
 
             var clientes = db.Clientes.AsNoTracking().ToList();
 
-            var options = new System.Text.Json.JsonSerializerOptions { WriteIndented = true };
+            var options = new JsonSerializerOptions { WriteIndented = true };
 
             clientes.ForEach(cli =>
             {
-                var json = System.Text.Json.JsonSerializer.Serialize(cli, options);
+                var json = JsonSerializer.Serialize(cli, options);
 
                 Console.WriteLine(json);
             });

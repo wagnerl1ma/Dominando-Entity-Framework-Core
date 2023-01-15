@@ -41,10 +41,10 @@ namespace DominandoEFCore_Modulo5_DataAnnotations.Domain
         [NotMapped]
         public string PropriedadeTeste { get; set; }
         
-        [InverseProperty("AeroportoPartida")]
+        [InverseProperty("AeroportoPartida")] // se relaciona com AeroportoPartida da classe Voo
         public ICollection<Voo> VoosDePartida { get; set; }
 
-        [InverseProperty("AeroportoChegada")]
+        [InverseProperty("AeroportoChegada")] // se relaciona com AeroportoChegada da classe Voo
         public ICollection<Voo> VoosDeChegada { get; set; }
     }
     
