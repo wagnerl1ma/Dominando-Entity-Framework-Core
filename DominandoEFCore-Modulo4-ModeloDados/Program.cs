@@ -26,8 +26,8 @@ namespace DominandoEFCore
             //Relacionamento1Para1();
             //Relacionamento1ParaMuitos();
             //RelacionamentoMuitosParaMuitos();
-            CampoDeApoio();
-            //ExemploTPH();
+            //CampoDeApoio();
+            ExemploTPH();
             //PacotesDePropriedades();
         }
 
