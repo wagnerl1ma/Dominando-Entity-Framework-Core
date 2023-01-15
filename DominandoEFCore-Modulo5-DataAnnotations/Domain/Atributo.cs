@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace DominandoEFCore_Modulo5_DataAnnotations.Domain
 {
     [Table("TabelaAtributos")]
-    [Index(nameof(Descricao), nameof(Id), IsUnique = true)]
+    [Index(nameof(Descricao), nameof(Id), IsUnique = true)] // Index: especificando quais propriedades para se criar o index
     [Comment("Meu comentario de minha tabela")]
     public class Atributo
     {
