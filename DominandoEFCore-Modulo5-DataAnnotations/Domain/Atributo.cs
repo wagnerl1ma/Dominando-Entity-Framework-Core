@@ -12,7 +12,7 @@ namespace DominandoEFCore_Modulo5_DataAnnotations.Domain
     public class Atributo
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // DatabaseGenerated: gera a coluna com o autoincremento //Obs: porem o entity ja faz isso de forma automatica sem precisar usar essa anotacao
         public int Id { get; set; }
 
         [Column("MinhaDescricao", TypeName = "VARCHAR(100)")]
@@ -39,8 +39,8 @@ namespace DominandoEFCore_Modulo5_DataAnnotations.Domain
         public string Nome { get; set; }
 
         [NotMapped]
-        public string PropriedadeTeste { get; set; }
-        
+        public string PropriedadeTeste { get; set; } //NotMapped: nao será criado no banco de dados
+
         [InverseProperty("AeroportoPartida")] // se relaciona com AeroportoPartida da classe Voo
         public ICollection<Voo> VoosDePartida { get; set; }
 
