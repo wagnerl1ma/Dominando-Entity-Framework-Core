@@ -13,8 +13,8 @@ namespace DominandoEFCore_Modulo6_Functions
     {
         static void Main(string[] args)
         {
-            FuncoesDeDatas();
-            //FuncaoLike();
+            //FuncoesDeDatas();
+            FuncaoLike();
             //FuncaoDataLength();
             //FuncaoProperty();
             //FuncaoCollate();
@@ -94,8 +94,9 @@ namespace DominandoEFCore_Modulo6_Functions
                 var dados = db
                     .Funcoes
                     .AsNoTracking()
-                    //.Where(p=> EF.Functions.Like(p.Descricao1, "Bo%"))
-                    .Where(p => EF.Functions.Like(p.Descricao1, "B[ao]%"))
+                    //.Where(p=> EF.Functions.Like(p.Descricao1, "%Bo")) // pega tudo que se termina com "Bo" do texto
+                    //.Where(p=> EF.Functions.Like(p.Descricao1, "Bo%")) // pega tudo que se inicia com "Bo" do texto
+                    .Where(p => EF.Functions.Like(p.Descricao1, "B[ao]%")) // pega tudo que se inicia com "Ba" ou "Bo"
                     .Select(p => p.Descricao1)
                     .ToArray();
 
