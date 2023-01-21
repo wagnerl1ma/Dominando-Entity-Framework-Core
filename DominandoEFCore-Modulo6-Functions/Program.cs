@@ -14,9 +14,9 @@ namespace DominandoEFCore_Modulo6_Functions
         static void Main(string[] args)
         {
             //FuncoesDeDatas();
-            FuncaoLike();
+            //FuncaoLike();
             //FuncaoDataLength();
-            //FuncaoProperty();
+            FuncaoProperty();
             //FuncaoCollate();
         }
 
@@ -48,7 +48,7 @@ namespace DominandoEFCore_Modulo6_Functions
                 var resultado = db
                     .Funcoes
                     //.AsNoTracking()
-                    .FirstOrDefault(p => EF.Property<string>(p, "PropriedadeSombra") == "Teste");
+                    .FirstOrDefault(p => EF.Property<string>(p, "PropriedadeSombra") == "Teste"); //propriedade sombra é uma propriedade que nao está mapeada no código mas existe no banco e com o entity é possivel criar essa prop
 
                 var propriedadeSombra = db
                     .Entry(resultado)
