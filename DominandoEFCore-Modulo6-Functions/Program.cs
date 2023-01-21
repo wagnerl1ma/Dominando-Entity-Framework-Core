@@ -16,8 +16,8 @@ namespace DominandoEFCore_Modulo6_Functions
             //FuncoesDeDatas();
             //FuncaoLike();
             //FuncaoDataLength();
-            FuncaoProperty();
-            //FuncaoCollate();
+            //FuncaoProperty();
+            FuncaoCollate();
         }
 
         static void FuncaoCollate()
@@ -27,11 +27,11 @@ namespace DominandoEFCore_Modulo6_Functions
 
                 var consulta1 = db
                     .Funcoes
-                    .FirstOrDefault(p => EF.Functions.Collate(p.Descricao1, "SQL_Latin1_General_CP1_CS_AS") == "Tela");
+                    .FirstOrDefault(p => EF.Functions.Collate(p.Descricao1, "SQL_Latin1_General_CP1_CS_AS") == "Tela"); // CS = será case sensitive - diferencia a consulta de maiusculo ou minusculo
 
                 var consulta2 = db
                     .Funcoes
-                    .FirstOrDefault(p => EF.Functions.Collate(p.Descricao1, "SQL_Latin1_General_CP1_CI_AS") == "tela");
+                    .FirstOrDefault(p => EF.Functions.Collate(p.Descricao1, "SQL_Latin1_General_CP1_CI_AS") == "tela"); // C1 = nao será case sensitive - nao diferencia a consulta de maiusculo ou minusculo
 
                 Console.WriteLine($"Consulta1: {consulta1?.Descricao1}");
 
