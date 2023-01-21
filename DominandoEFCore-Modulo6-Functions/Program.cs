@@ -13,11 +13,11 @@ namespace DominandoEFCore_Modulo6_Functions
     {
         static void Main(string[] args)
         {
-            //FuncoesDeDatas();
+            FuncoesDeDatas();
             //FuncaoLike();
             //FuncaoDataLength();
             //FuncaoProperty();
-            FuncaoCollate();
+            //FuncaoCollate();
         }
 
         static void FuncaoCollate()
@@ -120,10 +120,10 @@ namespace DominandoEFCore_Modulo6_Functions
                 var dados = db.Funcoes.AsNoTracking().Select(p =>
                    new
                    {
-                       Dias = EF.Functions.DateDiffDay(DateTime.Now, p.Data1),
-                       Meses = EF.Functions.DateDiffMonth(DateTime.Now, p.Data1),
+                       Dias = EF.Functions.DateDiffDay(DateTime.Now, p.Data1), // diferença de dias ef
+                       Meses = EF.Functions.DateDiffMonth(DateTime.Now, p.Data1), // diferença de meses ef
                        Data = EF.Functions.DateFromParts(2021, 1, 2),
-                       DataValida = EF.Functions.IsDate(p.Data2),
+                       DataValida = EF.Functions.IsDate(p.Data2), // verifica se a data está correta no banco de dados
                    });
 
                 foreach (var f in dados)
