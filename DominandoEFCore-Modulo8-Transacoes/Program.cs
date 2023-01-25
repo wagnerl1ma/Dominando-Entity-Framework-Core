@@ -22,6 +22,7 @@ namespace DominandoEFCore_Modulo8_Transacoes
             var transactionOptions = new TransactionOptions
             {
                 IsolationLevel = IsolationLevel.ReadCommitted,
+                //Timeout= TimeSpan.FromSeconds(10), //definindo timeout para esse escopo
             };
 
             using(var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
@@ -86,7 +87,7 @@ namespace DominandoEFCore_Modulo8_Transacoes
                     livro.Autor = "Rafael Almeida"; 
                     db.SaveChanges();
 
-                    transacao.CreateSavepoint("desfazer_apenas_insercao");
+                    transacao.CreateSavepoint("desfazer_apenas_insercao"); //Iniciando ponto de salvamento
 
                     db.Livros.Add(
                         new Livro
@@ -100,17 +101,17 @@ namespace DominandoEFCore_Modulo8_Transacoes
                         new Livro
                         {
                             Titulo = "Dominando o Entity Framework Core",
-                            Autor = "Rafael Almeida".PadLeft(16,'*')
+                            Autor = "Rafael Almeida".PadLeft(16,'*') //forçando exception
                         });  
                     db.SaveChanges();     
 
-                    transacao.Commit();            
+                    transacao.Commit();             //FIm do ponto de salvamento
                 }
                 catch(DbUpdateException e)
                 {
-                    transacao.RollbackToSavepoint("desfazer_apenas_insercao");
+                    transacao.RollbackToSavepoint("desfazer_apenas_insercao"); // executando RollbackToSavepoint a partir do ponto de salvamento
 
-                    if(e.Entries.Count(p=>p.State == EntityState.Added) == e.Entries.Count)
+                    if (e.Entries.Count(p=>p.State == EntityState.Added) == e.Entries.Count)
                     {
                         transacao.Commit();
                     }
@@ -119,7 +120,7 @@ namespace DominandoEFCore_Modulo8_Transacoes
             }
         } 
 
-        static void ReverterTransacao()
+        static void ReverterTransacao() // Revertendo transacao (RollBack) 
         {
             CadastrarLivro();
 
@@ -137,7 +138,7 @@ namespace DominandoEFCore_Modulo8_Transacoes
                         new Livro
                         {
                             Titulo = "Dominando o Entity Framework Core",
-                            Autor = "Rafael Almeida".PadLeft(16,'*')
+                            Autor = "Rafael Almeida".PadLeft(16,'*')  //forçando exception
                         }); 
 
                     db.SaveChanges();     
@@ -158,7 +159,7 @@ namespace DominandoEFCore_Modulo8_Transacoes
 
             using (var db = new ApplicationContext())
             {                 
-                var transacao = db.Database.BeginTransaction();
+                var transacao = db.Database.BeginTransaction(); //Iniciando Transacao Manual
 
                 var livro = db.Livros.FirstOrDefault(p=>p.Id == 1);
                 livro.Autor = "Rafael Almeida"; 
@@ -170,12 +171,12 @@ namespace DominandoEFCore_Modulo8_Transacoes
                     new Livro
                     {
                         Titulo = "Dominando o Entity Framework Core",
-                        Autor = "Rafael Almeida"
+                        Autor = "Wagner Lima"
                     }); 
 
                 db.SaveChanges();     
 
-                transacao.Commit();            
+                transacao.Commit();   //Finalizando Transacao Manual          
             }
         }
 
