@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominandoEFCore-Modulo5-Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominandoEFCore-Modulo6-Functions", "DominandoEFCore-Modulo6-Functions\DominandoEFCore-Modulo6-Functions.csproj", "{E5CF5ADB-64FD-4A36-B923-2A8CC91247DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominandoEFCore-Modulo7-Interceptacao", "DominandoEFCore-Modulo7-Interceptacao\DominandoEFCore-Modulo7-Interceptacao.csproj", "{BA947DCB-376C-4B14-AE62-D6AFFB98EFDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DominandoEFCore-Modulo7-Interceptacao", "DominandoEFCore-Modulo7-Interceptacao\DominandoEFCore-Modulo7-Interceptacao.csproj", "{BA947DCB-376C-4B14-AE62-D6AFFB98EFDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominandoEFCore-Modulo8-Transacoes", "DominandoEFCore-Modulo8-Transacoes\DominandoEFCore-Modulo8-Transacoes.csproj", "{11DFD0C2-90DA-4B58-88B3-DDD14077A779}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{BA947DCB-376C-4B14-AE62-D6AFFB98EFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA947DCB-376C-4B14-AE62-D6AFFB98EFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA947DCB-376C-4B14-AE62-D6AFFB98EFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11DFD0C2-90DA-4B58-88B3-DDD14077A779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11DFD0C2-90DA-4B58-88B3-DDD14077A779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11DFD0C2-90DA-4B58-88B3-DDD14077A779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11DFD0C2-90DA-4B58-88B3-DDD14077A779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

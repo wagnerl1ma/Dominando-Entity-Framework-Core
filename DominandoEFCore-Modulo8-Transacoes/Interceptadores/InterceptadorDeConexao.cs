@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace DominandoEFCore_Modulo7_Interceptacao.Interceptadores
+namespace DominandoEFCore_Modulo8_Transacoes.Interceptadores
 {
     public class InterceptadorDeConexao : DbConnectionInterceptor
     {
-        public override InterceptionResult ConnectionOpening(DbConnection connection, ConnectionEventData eventData, InterceptionResult result)
+        public override InterceptionResult ConnectionOpening(
+            DbConnection connection, 
+            ConnectionEventData eventData, 
+            InterceptionResult result)
         {
             System.Console.WriteLine("Entrei no metodo ConnectionOpening");
 
