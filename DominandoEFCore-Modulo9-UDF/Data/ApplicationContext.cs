@@ -23,8 +23,10 @@ namespace DominandoEFCore_Modulo9_UDF.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Curso.Funcoes.MinhasFuncoes.RegistarFuncoes(modelBuilder);
+            //Curso.Funcoes.MinhasFuncoes.RegistarFuncoes(modelBuilder);  //Registro das Funcoes
 
+
+            // Registrando Funcoes com Fluent API
             modelBuilder
                 .HasDbFunction(_minhaFuncao)
                 .HasName("LEFT")
