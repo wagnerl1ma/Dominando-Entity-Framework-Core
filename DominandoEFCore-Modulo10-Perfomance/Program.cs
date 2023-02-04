@@ -28,7 +28,7 @@ namespace DominandoEFCore_Modulo10_Perfomance
         {
             using var db = new ApplicationContext();
 
-            var funcionarios = db.Funcionarios.AsNoTracking().Include(p => p.Departamento).ToList();
+            var funcionarios = db.Funcionarios.AsNoTracking().Include(p => p.Departamento).ToList(); 
         }
 
         static void ConsultaComResolucaoDeIdentidade()
@@ -36,7 +36,7 @@ namespace DominandoEFCore_Modulo10_Perfomance
             using var db = new ApplicationContext();
 
             var funcionarios = db.Funcionarios
-                .AsNoTrackingWithIdentityResolution()
+                .AsNoTrackingWithIdentityResolution() //mais ultilizado para somenete leitura - utiliza menos memoria 
                 .Include(p => p.Departamento)
                 .ToList();
         }

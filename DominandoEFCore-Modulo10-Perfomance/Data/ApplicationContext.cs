@@ -15,7 +15,7 @@ namespace DominandoEFCore_Modulo10_Perfomance.Data
 
             optionsBuilder
                 .UseSqlServer(strConnection)
-                //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution)
+                //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution) // utilizando opcoes de consultas customizada de forma global
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging();
         }
