@@ -1,6 +1,4 @@
-using System;
-using System.Linq;
-using Curso.Domain;
+using DominandoEFCore_Modulo5_DataAnnotations.Domain;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DominandoEFCore_Modulo5_DataAnnotations.Conversores
