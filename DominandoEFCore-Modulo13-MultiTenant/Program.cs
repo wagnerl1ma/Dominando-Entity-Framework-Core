@@ -1,9 +1,12 @@
 using DominandoEFCore_Modulo13_MultiTenant.Data;
+using DominandoEFCore_Modulo13_MultiTenant.Data.Interceptors;
+using DominandoEFCore_Modulo13_MultiTenant.Data.ModelFactory;
 using DominandoEFCore_Modulo13_MultiTenant.Domain;
 using DominandoEFCore_Modulo13_MultiTenant.Middlewares;
 using DominandoEFCore_Modulo13_MultiTenant.Provider;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace DominandoEFCore_Modulo13_MultiTenant
 {
@@ -15,15 +18,32 @@ namespace DominandoEFCore_Modulo13_MultiTenant
 
             // Add services to the container.
             builder.Services.AddScoped<TenantData>();
+            builder.Services.AddScoped<StrategySchemaInterceptor>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<ApplicationContext>(p => p.UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=Tenant99;Integrated Security=true;")
-                .LogTo(Console.WriteLine)
-                .EnableSensitiveDataLogging());
+
+
+            //builder.Services.AddDbContext<ApplicationContext>(p => p.UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=Tenant99;Integrated Security=true;")
+            //    .LogTo(Console.WriteLine)
+            //    .EnableSensitiveDataLogging());
+
+            builder.Services.AddDbContext<ApplicationContext>((provider, options) =>
+            {
+                options
+               .UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=Tenant99;Integrated Security=true;")
+               .LogTo(Console.WriteLine)
+               .ReplaceService<IModelCacheKeyFactory, StrategySchemaModelCacheKey>()
+               .EnableSensitiveDataLogging();
+
+                //var interceptor = provider.GetRequiredService<StrategySchemaInterceptor>();
+
+                //options.AddInterceptors(interceptor);
+        });
+           
 
 
             var app = builder.Build();

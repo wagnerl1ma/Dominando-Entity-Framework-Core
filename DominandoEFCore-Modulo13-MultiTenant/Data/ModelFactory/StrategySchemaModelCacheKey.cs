@@ -1,19 +1,20 @@
+using DominandoEFCore_Modulo13_MultiTenant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace src.Data.ModelFactory
+namespace DominandoEFCore_Modulo13_MultiTenant.Data.ModelFactory
 {
-    /*public class StrategySchemaModelCacheKey : IModelCacheKeyFactory
-    { 
+    public class StrategySchemaModelCacheKey : IModelCacheKeyFactory
+    {
         public object Create(DbContext context)
         {
-            var model = new 
+            var model = new
             {
                 Type = context.GetType(),
-                Schema =  (context as ApplicationContext)?.TenantData.TenantId
+                Schema = (context as ApplicationContext)?.TenantData.TenantId
             };
 
-            return model; 
-        } 
-    }*/
+            return model;
+        }
+    }
 }

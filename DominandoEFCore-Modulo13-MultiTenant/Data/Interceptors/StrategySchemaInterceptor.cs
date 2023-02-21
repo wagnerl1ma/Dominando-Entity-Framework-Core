@@ -1,33 +1,34 @@
+using DominandoEFCore_Modulo13_MultiTenant.Provider;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Data.Common;
 
 namespace DominandoEFCore_Modulo13_MultiTenant.Data.Interceptors
 {
-    //public class StrategySchemaInterceptor : DbCommandInterceptor
-    //{
-    //    private readonly TenantData _tenantData;
+    public class StrategySchemaInterceptor : DbCommandInterceptor
+    {
+        private readonly TenantData _tenantData;
 
-    //    public StrategySchemaInterceptor(TenantData tenantData)
-    //    {
-    //        _tenantData = tenantData;
-    //    }
+        public StrategySchemaInterceptor(TenantData tenantData)
+        {
+            _tenantData = tenantData;
+        }
 
-    //    public override InterceptionResult<DbDataReader> ReaderExecuting(
-    //        DbCommand command,
-    //        CommandEventData eventData,
-    //        InterceptionResult<DbDataReader> result)
-    //    {
-    //        ReplaceSchema(command);
+        public override InterceptionResult<DbDataReader> ReaderExecuting(
+            DbCommand command,
+            CommandEventData eventData,
+            InterceptionResult<DbDataReader> result)
+        {
+            ReplaceSchema(command);
 
-    //        return base.ReaderExecuting(command, eventData, result);
-    //    }
+            return base.ReaderExecuting(command, eventData, result);
+        }
 
-    //    private void ReplaceSchema(DbCommand command)
-    //    {
-    //        // FROM PRODUCTS -> FROM [tenant-1].PRODUCTS
-    //        command.CommandText = command.CommandText
-    //            .Replace("FROM ", $" FROM [{_tenantData.TenantId}].")
-    //            .Replace("JOIN ", $" JOIN [{_tenantData.TenantId}].");
-    //    }
-    //}
+        private void ReplaceSchema(DbCommand command)
+        {
+            // FROM PRODUCTS -> FROM [tenant-1].PRODUCTS
+            command.CommandText = command.CommandText
+                .Replace("FROM ", $" FROM [{_tenantData.TenantId}].")
+                .Replace("JOIN ", $" JOIN [{_tenantData.TenantId}].");
+        }
+    }
 }

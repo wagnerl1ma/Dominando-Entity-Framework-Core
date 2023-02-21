@@ -16,9 +16,13 @@ namespace DominandoEFCore_Modulo13_MultiTenant.Data
             TenantData = tenant;
         }
 
+        //public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        //{
+        //}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.HasDefaultSchema(TenantData.TenantId);
+            modelBuilder.HasDefaultSchema(TenantData.TenantId);
 
             modelBuilder.Entity<Person>().HasData(
                 new Person { Id = 1, Name = "Person 1", TenantId = "tenant-1" },
@@ -30,8 +34,8 @@ namespace DominandoEFCore_Modulo13_MultiTenant.Data
                 new Product { Id = 2, Description = "Description 2", TenantId = "tenant-2" },
                 new Product { Id = 3, Description = "Description 3", TenantId = "tenant-2" });
 
-            modelBuilder.Entity<Person>().HasQueryFilter(p=>p.TenantId == TenantData.TenantId); //Query global para todo o projeto
-            modelBuilder.Entity<Product>().HasQueryFilter(p=>p.TenantId == TenantData.TenantId); //Query global para todo o projeto
+            //modelBuilder.Entity<Person>().HasQueryFilter(p=>p.TenantId == TenantData.TenantId); //Query global para todo o projeto
+            //modelBuilder.Entity<Product>().HasQueryFilter(p=>p.TenantId == TenantData.TenantId); //Query global para todo o projeto
         }
     }
 }
