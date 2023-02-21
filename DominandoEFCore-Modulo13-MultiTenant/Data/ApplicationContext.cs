@@ -9,20 +9,20 @@ namespace DominandoEFCore_Modulo13_MultiTenant.Data
         public DbSet<Person> People { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        public readonly TenantData TenantData;
+        //public readonly TenantData TenantData;
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options, TenantData tenant) : base(options)
-        {
-            TenantData = tenant;
-        }
-
-        //public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        //public ApplicationContext(DbContextOptions<ApplicationContext> options, TenantData tenant) : base(options)
         //{
+        //    TenantData = tenant;
         //}
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(TenantData.TenantId);
+            //modelBuilder.HasDefaultSchema(TenantData.TenantId);
 
             modelBuilder.Entity<Person>().HasData(
                 new Person { Id = 1, Name = "Person 1", TenantId = "tenant-1" },

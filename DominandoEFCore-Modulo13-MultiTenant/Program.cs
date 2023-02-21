@@ -2,23 +2,28 @@ using DominandoEFCore_Modulo13_MultiTenant.Data;
 using DominandoEFCore_Modulo13_MultiTenant.Data.Interceptors;
 using DominandoEFCore_Modulo13_MultiTenant.Data.ModelFactory;
 using DominandoEFCore_Modulo13_MultiTenant.Domain;
+using DominandoEFCore_Modulo13_MultiTenant.Extensions;
 using DominandoEFCore_Modulo13_MultiTenant.Middlewares;
 using DominandoEFCore_Modulo13_MultiTenant.Provider;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
 
 namespace DominandoEFCore_Modulo13_MultiTenant
 {
     public class Program
     {
+        public static IConfiguration Configuration { get; }
+
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddScoped<TenantData>();
-            builder.Services.AddScoped<StrategySchemaInterceptor>();
+            //builder.Services.AddScoped<StrategySchemaInterceptor>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,24 +31,47 @@ namespace DominandoEFCore_Modulo13_MultiTenant
             builder.Services.AddSwaggerGen();
 
 
-
+            // Estrategia 1 - Identificador na tabela
             //builder.Services.AddDbContext<ApplicationContext>(p => p.UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=Tenant99;Integrated Security=true;")
             //    .LogTo(Console.WriteLine)
             //    .EnableSensitiveDataLogging());
 
-            builder.Services.AddDbContext<ApplicationContext>((provider, options) =>
+            // Estrategia 2 - Schema
+            //    builder.Services.AddDbContext<ApplicationContext>((provider, options) =>
+            //    {
+            //        options
+            //       .UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=Tenant99;Integrated Security=true;")
+            //       .LogTo(Console.WriteLine)
+            //       .ReplaceService<IModelCacheKeyFactory, StrategySchemaModelCacheKey>()
+            //       .EnableSensitiveDataLogging();
+
+            //        //var interceptor = provider.GetRequiredService<StrategySchemaInterceptor>();
+
+            //        //options.AddInterceptors(interceptor);
+            //});
+
+            // Estrategia 3 - Banco de dados
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddScoped<ApplicationContext>(provider =>
             {
-                options
-               .UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=Tenant99;Integrated Security=true;")
-               .LogTo(Console.WriteLine)
-               .ReplaceService<IModelCacheKeyFactory, StrategySchemaModelCacheKey>()
-               .EnableSensitiveDataLogging();
+                var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
 
-                //var interceptor = provider.GetRequiredService<StrategySchemaInterceptor>();
+                var httpContext = provider.GetService<IHttpContextAccessor>()?.HttpContext;
+                var tenantId = httpContext?.GetTenantId();
 
-                //options.AddInterceptors(interceptor);
-        });
-           
+                //var connectionString = Configuration.GetConnectionString(tenantId);
+                var connectionString = Configuration.GetConnectionString("custom").Replace("_DATABASE_", tenantId);
+
+                optionsBuilder
+                    .UseSqlServer(connectionString)
+                    //.UseSqlServer("Data source=(localdb)\\mssqllocaldb; Initial Catalog=TenantZ;Integrated Security=true;")
+                    .LogTo(Console.WriteLine)
+                    .EnableSensitiveDataLogging();
+
+                return new ApplicationContext(optionsBuilder.Options);
+            });
+
 
 
             var app = builder.Build();
@@ -61,7 +89,7 @@ namespace DominandoEFCore_Modulo13_MultiTenant
 
             app.UseAuthorization();
 
-            app.UseMiddleware<TenantMiddleware>();
+            //app.UseMiddleware<TenantMiddleware>();
 
 
             app.MapControllers();

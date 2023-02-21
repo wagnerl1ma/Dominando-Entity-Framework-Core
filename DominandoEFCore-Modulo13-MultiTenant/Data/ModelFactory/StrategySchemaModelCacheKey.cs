@@ -4,17 +4,17 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace DominandoEFCore_Modulo13_MultiTenant.Data.ModelFactory
 {
-    public class StrategySchemaModelCacheKey : IModelCacheKeyFactory
-    {
-        public object Create(DbContext context)
-        {
-            var model = new
-            {
-                Type = context.GetType(),
-                Schema = (context as ApplicationContext)?.TenantData.TenantId
-            };
+    //public class StrategySchemaModelCacheKey : IModelCacheKeyFactory
+    //{
+    //    public object Create(DbContext context)
+    //    {
+    //        var model = new
+    //        {
+    //            Type = context.GetType(),
+    //            Schema = (context as ApplicationContext)?.TenantData.TenantId
+    //        };
 
-            return model;
-        }
-    }
+    //        return model;
+    //    }
+    //}
 }
