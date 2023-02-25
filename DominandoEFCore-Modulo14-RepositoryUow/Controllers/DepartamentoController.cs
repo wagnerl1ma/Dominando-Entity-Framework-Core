@@ -24,7 +24,7 @@ namespace DominandoEFCore_Modulo14_RepositoryUow.Controllers
 
         //departamento/1
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(int id/*,[FromServices]IDepartamentoRepository repository*/)
+        public async Task<IActionResult> GetByIdAsync(int id/*,[FromServices]IDepartamentoRepository repository*/) //USANDO O FROM SERVICE ELE ABRE UMA INSTANCIA DO OBJETO QUE VOCE QUER USAR
         {
             //var departamento = await _departamentoRepository.GetByIdAsync(id);
             var departamento = await _uow.DepartamentoRepository.GetByIdAsync(id);
