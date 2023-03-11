@@ -22,10 +22,11 @@ namespace DominandoEFCore_Modulo14_RepositoryUow
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ApplicationContext>(p => p.UseSqlServer("Data source=(localdb)\\mssqllocaldb; DataBase=UoW; Integrated Security=true;")
-                .LogTo(Console.WriteLine)
-                .EnableSensitiveDataLogging());
+                            .LogTo(Console.WriteLine)
+                            .EnableSensitiveDataLogging());
 
             builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 
